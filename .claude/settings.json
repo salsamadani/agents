@@ -1,0 +1,11 @@
+{
+  "skillOverrides": {
+    "anthropic-skills:computer-use": "off",
+    "anthropic-skills:built-in-browser": "off",
+    "anthropic-skills:chrome-browser": "off",
+    "anthropic-skills:algorithmic-art": "off",
+    "anthropic-skills:morning": "off",
+    "anthropic-skills:import-memory": "off",
+    "session-start-hook": "off"
+  }
+}
