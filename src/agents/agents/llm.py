@@ -36,8 +36,8 @@ def completion_with_backoff(**kwargs):
     Accepts ``api_key`` and ``api_base`` as keyword arguments so callers
     can pass provider-specific credentials without touching global state.
     """
-    api_key = kwargs.pop("api_key", None) or os.environ.get("OPENAI_API_KEY")
-    api_base = kwargs.pop("api_base", None) or os.environ.get("OPENAI_BASE_URL")
+    api_key = kwargs.pop("api_key", None)
+    api_base = kwargs.pop("api_base", None)
 
     if api_key:
         kwargs["api_key"] = api_key
@@ -267,6 +267,7 @@ class OpenAILLM(LLM):
             "model": self.model,
             "messages": messages,
             "temperature": self.temperature,
+            "max_tokens": kwargs.get("max_tokens", self.max_tokens),
             "api_key": self.API_KEY,
             "api_base": self.API_BASE,
         }
@@ -282,10 +283,10 @@ class OpenAILLM(LLM):
 
         response = completion_with_backoff(**call_kwargs)
 
-        if response.choices[0].message.get("tool_calls"):
-            content = response.choices[0].message
-        elif stream:
+        if stream:
             content = self.get_stream(response, self.log_path, messages)
+        elif response.choices[0].message.get("tool_calls"):
+            content = response.choices[0].message
         else:
             content = response.choices[0].message["content"].strip()
             if self.SAVE_LOGS:
