@@ -17,5 +17,5 @@
 from .agent import *
 from .agent_team import *
 from .environment import *
-from .llm import AnthropicLLM, create_llm, poll_batch_until_complete
+from .llm import AnthropicBatchClient, AnthropicLLM, create_llm, poll_batch_until_complete
 from .memory import *
