@@ -4,7 +4,7 @@ Copyright 2024 The AIWaves Inc. team.
 This repository is a modified version of https://github.com/aiwaves-cn/agents,
 distributed under the Apache License, Version 2.0 (see LICENSE).
 
-Modifications copyright 2026 Arabian Orbit.
+Modifications copyright 2026 Arabian Orbit (Saud K. AlSamadani).
 
 Arabian Orbit added Anthropic Claude support: Claude models through litellm,
 and the Anthropic Message Batches API through the AnthropicBatchClient class.
