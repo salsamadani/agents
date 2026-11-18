@@ -1,0 +1,27 @@
+AI-Agents
+Copyright 2024 The AIWaves Inc. team.
+
+This repository is a modified version of https://github.com/aiwaves-cn/agents,
+distributed under the Apache License, Version 2.0 (see LICENSE).
+
+Modifications copyright 2026 Arabian Orbit.
+
+Arabian Orbit added Anthropic Claude support: Claude models through litellm,
+and the Anthropic Message Batches API through the AnthropicBatchClient class.
+Arabian Orbit changed these files:
+
+  src/agents/agents/llm.py
+  src/agents/agents/__init__.py
+  src/agents/agents/agent.py
+  src/agents/agents/agent_team.py
+  src/agents/task/node.py
+  src/agents/task/sop.py
+  src/agents/task/task.py
+  src/agents/optimization/loss.py
+  src/agents/optimization/node_optimizer.py
+  src/agents/optimization/prompt_optimizer.py
+  src/agents/optimization/sop_optimizer.py
+  src/agents/optimization/toolkit_optimizer.py
+  src/agents/optimization/utils.py
+  requirements.txt
+  .claude/settings.json
