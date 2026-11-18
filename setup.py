@@ -12,6 +12,7 @@ setuptools.setup(
     version="2.0.0",
     author="AIWaves",
     author_email="contact@aiwaves.cn",
+    maintainer="Arabian Orbit",
     description="An Open-source Framework for Autonomous Language Agents",
     long_description=long_description,
     long_description_content_type="text/markdown",

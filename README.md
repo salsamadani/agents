@@ -62,6 +62,10 @@ pip install -e .
 
 ---
 
+## Anthropic Claude support
+
+Arabian Orbit added and maintains Anthropic Claude support in this fork. To use Claude models, set `"LLM_type": "Anthropic"` in an agent's LLM config. To run many requests at once at lower cost, use `AnthropicBatchClient` with the Message Batches API. See [NOTICE](NOTICE) for the list of changed files.
+
 ## 🚩Citation
 
 If you find our repository useful in your research, please kindly consider cite:
