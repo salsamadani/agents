@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from agents.optimization.optimizer import Optimizer
 from agents.utils.prompts import DEFAULT_NODE_PROMPT_TEMPLATES
 from agents.evaluation import Case
-from agents.agents.llm import LLMConfig, OpenAILLM
+from agents.agents.llm import LLMConfig, OpenAILLM, create_llm
 from agents.task.solution import SolutionConfig, Solution
 from agents.optimization.optimizer import OptimizerConfig
 from agents.optimization.utils import OptimUtils
@@ -79,7 +79,7 @@ class PromptOptimizer(Optimizer):
 
         # llm
         llm_config = LLMConfig(config.llm_config)
-        self.llm_eval = OpenAILLM(llm_config) if llm_config else None
+        self.llm_eval = create_llm(llm_config) if llm_config else None
 
         # log
         self.logger = logging.getLogger(logger_name) if logger_name else logging.getLogger(__name__)

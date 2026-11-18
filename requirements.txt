@@ -28,3 +28,4 @@ unstructured-inference==0.7.23
 unstructured.pytesseract==0.3.12
 wandb==0.16.6
 backoff==2.2.1
+anthropic>=0.39.0

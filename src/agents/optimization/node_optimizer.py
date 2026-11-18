@@ -6,7 +6,7 @@ from functools import partial
 from pathlib import Path
 
 from agents import SOP, Solution, AgentTeamConfig, AgentTeam, SolutionConfig
-from agents.agents.llm import LLMConfig, OpenAILLM
+from agents.agents.llm import LLMConfig, OpenAILLM, create_llm
 from agents.optimization.optimizer import Optimizer, OptimizerConfig
 from agents.optimization.utils import OptimUtils
 from agents.task.node import Node
@@ -53,7 +53,7 @@ class NodeOptimizer(Optimizer):
         self.config = config
 
         # llm
-        self.llm_eval = (OpenAILLM(LLMConfig(config.llm_config)) if config.llm_config else None)
+        self.llm_eval = (create_llm(LLMConfig(config.llm_config)) if config.llm_config else None)
 
         # prompt
         self.both_prompt = config.meta_prompt.get("both")
@@ -655,7 +655,7 @@ Note:
         "ACTIVE_MODE": True,
         "SAVE_LOGS": True,
     }
-    llm = OpenAILLM(LLMConfig(llm_config))
+    llm = create_llm(LLMConfig(llm_config))
     print(last_prompt)
 
     response, cont = llm.get_response(

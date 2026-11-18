@@ -20,7 +20,7 @@ import litellm
 from datetime import datetime
 from typing import Dict, Union
 
-from .llm import LLMConfig, OpenAILLM
+from .llm import LLMConfig, OpenAILLM, create_llm
 from .memory import Memory, ShortTermMemory, LongTermMemory
 from .toolkit import Toolkit
 from .environment import Environment
@@ -74,7 +74,7 @@ class Agent:
         llm_config = (
             LLMConfig(self.config.LLM_config) if self.config.LLM_config else None
         )
-        self.LLM = OpenAILLM(llm_config) if llm_config else None
+        self.LLM = create_llm(llm_config) if llm_config else None
         if self.config.memory:
             self.short_term_memory = (
                 ShortTermMemory(

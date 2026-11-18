@@ -2,6 +2,7 @@
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from agents import LLMConfig, OpenAILLM
+from agents.agents.llm import create_llm
 from agents.optimization.optimizer import OptimizerConfig, Optimizer
 from agents.evaluation.case import Case
 from agents.optimization.prompt_formatter import formulate_prompt, get_config_needed_variables
@@ -48,7 +49,7 @@ class LossCalculator(Optimizer):
 
         # llm
         llm_config = LLMConfig(config.llm_config)
-        self.llm = OpenAILLM(llm_config) if llm_config else None
+        self.llm = create_llm(llm_config) if llm_config else None
 
         # task info (ground_truth and dataset eval score)
         self.has_ground_truth = has_ground_truth

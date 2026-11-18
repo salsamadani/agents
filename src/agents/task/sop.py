@@ -20,7 +20,7 @@ import random
 from typing import Dict, List, Union, Any
 from bidict import bidict
 
-from ..agents.llm import OpenAILLM, LLMConfig
+from ..agents.llm import OpenAILLM, LLMConfig, create_llm
 from ..agents.agent_team import AgentTeam
 from ..agents.environment import Environment
 from ..agents.memory import Memory, ShortTermMemory, LongTermMemory
@@ -54,7 +54,7 @@ class SOPConfig(Config):
             "ACTIVE_MODE": True,
             "SAVE_LOGS": True,
         }
-        llm = OpenAILLM(LLMConfig(llm_config))
+        llm = create_llm(LLMConfig(llm_config))
         system_prompt = "You are a helpful assistant designed to output JSON."
         last_prompt = SOP_CONFIG_GENERATION_PROMPT_TEMPLATE.format(
             query=query, task_description=task_description
@@ -178,7 +178,7 @@ class SOP:
             "ACTIVE_MODE": True,
             "SAVE_LOGS": True,
         }
-        self.llm = OpenAILLM(LLMConfig(llm_config))
+        self.llm = create_llm(LLMConfig(llm_config))
 
     def init_name_role_hash_for_nodes(self, agent_team: AgentTeam):
         for agent_name, agent in agent_team.agents.items():

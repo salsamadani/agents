@@ -2,7 +2,7 @@ import logging
 from typing import List
 
 from .optimizer import OptimizerConfig, Optimizer
-from ..agents.llm import LLMConfig, OpenAILLM
+from ..agents.llm import LLMConfig, OpenAILLM, create_llm
 from ..evaluation import Case
 from ..task import Solution
 from ..agents.toolkit import Toolkit
@@ -24,7 +24,7 @@ class ToolkitOptimizer(Optimizer):
         LLM_config = (
             LLMConfig(self.config.LLM_config) if self.config.LLM_config else None
         )
-        self.LLM = OpenAILLM(LLM_config) if LLM_config else None
+        self.LLM = create_llm(LLM_config) if LLM_config else None
 
         self._best_score = -1
 

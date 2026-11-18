@@ -20,7 +20,7 @@ import json
 from typing import Dict, Union
 
 from .agent import AgentConfig, Agent
-from .llm import OpenAILLM, LLMConfig
+from .llm import OpenAILLM, LLMConfig, create_llm
 from .memory import ShortTermMemory, LongTermMemory
 from .environment import EnvironmentConfig, Environment
 from .action import Action
@@ -65,7 +65,7 @@ class AgentTeamConfig(Config):
                     )
                 )
 
-        llm = OpenAILLM(LLMConfig(llm_config))
+        llm = create_llm(LLMConfig(llm_config))
         system_prompt = "You are a helpful assistant designed to output JSON."
         last_prompt = AGENT_TEAM_CONFIG_GENERATION_PROMPT_TEMPLATE.format(
             task_description=task_description,
