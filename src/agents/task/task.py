@@ -18,6 +18,7 @@ import copy
 import json
 from typing import Union
 from ..agents import LLMConfig, OpenAILLM
+from ..agents.llm import create_llm
 
 from ..utils.config import Config
 from ..utils.prompts import TASK_CONFIG_GENERATION_PROMPT_TEMPLATE
@@ -42,7 +43,7 @@ class TaskConfig(Config):
             "temperature": 0.3,
             "log_path": "logs/generate_config/task",
         }
-        llm = OpenAILLM(LLMConfig(llm_config))
+        llm = create_llm(LLMConfig(llm_config))
         system_prompt = "You are a helpful assistant designed to output JSON."
         last_prompt = TASK_CONFIG_GENERATION_PROMPT_TEMPLATE.format(query=query)
 

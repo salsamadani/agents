@@ -21,7 +21,7 @@ from typing import Dict, List, Union
 
 from bidict import bidict
 
-from ..agents.llm import LLMConfig, OpenAILLM
+from ..agents.llm import LLMConfig, OpenAILLM, create_llm
 from ..knowledge_bases import KnowledgeBase, KnowledgeBaseConfig
 from ..utils.config import Config
 from ..utils.prompts import *
@@ -71,7 +71,7 @@ class NodeConfig(Config):
                 "ACTIVE_MODE": True,
                 "SAVE_LOGS": True,
             }
-            llm = OpenAILLM(LLMConfig(llm_config))
+            llm = create_llm(LLMConfig(llm_config))
             system_prompt = "You are a helpful assistant."
             last_prompt = TRANSIT_CONTROLLER_CONFIG_GENERATION_PROMPT_TEMPLATE.format(
                 task_description=task_description,
@@ -102,7 +102,7 @@ class NodeConfig(Config):
                 "log_path": "logs/generate_config/node/controller/route",
                 "ACTIVE_MODE": True,
             }
-            llm = OpenAILLM(LLMConfig(llm_config))
+            llm = create_llm(LLMConfig(llm_config))
             system_prompt = "You are a helpful assistant designed to output JSON."
             last_prompt = ROUTE_CONTROLLER_CONFIG_GENERATION_PROMPT_TEMPLATE.format(
                 task_description=task_description,
@@ -232,7 +232,7 @@ class NodeConfig(Config):
             "ACTIVE_MODE": True,
             "SAVE_LOGS": True,
         }
-        llm = OpenAILLM(LLMConfig(llm_config))
+        llm = create_llm(LLMConfig(llm_config))
         system_prompt = "You are a helpful assistant designed to output JSON."
         last_prompt = NODE_ROLES_CONFIG_GENERATION_PROMPT_TEMPLATE.format(
             task_description=task_description, node_description=node_description

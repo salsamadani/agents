@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from agents import SOP, Solution, SolutionConfig
-from agents.agents.llm import LLMConfig, OpenAILLM
+from agents.agents.llm import LLMConfig, OpenAILLM, create_llm
 from agents.evaluation import Case
 from agents.task.node import NodeConfig, Node
 from agents.optimization import prompt_formatter
@@ -50,7 +50,7 @@ class SOPOptimizer(Optimizer):
         self.config = config
 
         # llm
-        self.llm_eval = OpenAILLM(LLMConfig(config.llm_config)) if config.llm_config else None
+        self.llm_eval = create_llm(LLMConfig(config.llm_config)) if config.llm_config else None
 
         # prompt
         self.meta_backward = config.meta_prompt.get("backward")
@@ -764,7 +764,7 @@ Note:
         "ACTIVE_MODE": True,
         "SAVE_LOGS": True,
     }
-    llm = OpenAILLM(LLMConfig(llm_config))
+    llm = create_llm(LLMConfig(llm_config))
     print(last_prompt)
 
     res, cont = llm.get_response(

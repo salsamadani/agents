@@ -2,6 +2,7 @@ import os.path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from agents import DEFAULT_NODE_PROMPT_TEMPLATES, OpenAILLM, SOP
+from agents.agents.llm import create_llm
 from agents.evaluation.case import Case
 from agents.task.sop import SOP
 from agents.optimization import prompt_formatter
