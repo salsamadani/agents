@@ -242,8 +242,10 @@ class OpenAILLM(LLM):
         response_format=None,
         **kwargs,
     ):
-        """
-        return LLM's response
+        """Return (response, content).
+
+        When streaming, consume response for structured chunks (including
+        delta.tool_calls), or content for text fragments. Both share one iterator.
         """
         messages = (
             [{"role": "system", "content": system_prompt}] if system_prompt else []
@@ -267,6 +269,7 @@ class OpenAILLM(LLM):
         call_kwargs = {
             "model": self.model,
             "messages": messages,
+            "stream": stream,
             "temperature": self.temperature,
             "max_tokens": kwargs.get("max_tokens", self.max_tokens),
             "api_key": self.API_KEY,
@@ -276,8 +279,6 @@ class OpenAILLM(LLM):
         if tools:
             call_kwargs["tools"] = tools
             call_kwargs["tool_choice"] = tool_choice
-        else:
-            call_kwargs["stream"] = stream
 
         if response_format:
             call_kwargs["response_format"] = response_format
